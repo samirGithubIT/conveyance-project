@@ -56,7 +56,7 @@
                 </table>
 
                 {{-- for paginate --}}
-                {{-- {!! $employees->links() !!} --}}
+                {!! $employees->links() !!}
             </div>
         </div>
     </div>

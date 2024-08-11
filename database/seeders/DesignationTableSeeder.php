@@ -16,7 +16,7 @@ class DesignationTableSeeder extends Seeder
     {
         $departments = Department::all();
 
-        $storeQuantity = 3;
+        $storeQuantity = 2;
         foreach($departments as $department){
             for($i=0; $i<$storeQuantity; $i++){
                 $designation = new Designation();

@@ -16,6 +16,7 @@
                     <a href="{{ route('admin.department.index') }}" class="btn btn-outline-secondary">Departments</a>
                     <a href="{{ route('admin.designation.index') }}" class="btn btn-outline-secondary  mx-2">Designation</a>
                     <a href="{{ route('admin.employee.index') }}" class="btn btn-outline-secondary">Employee</a>
+                    <a href="{{ route('admin.conveyance.index') }}" class="btn btn-outline-secondary mx-2">Conveyance</a>
                 </div>
             </div>
         </div>

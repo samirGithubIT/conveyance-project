@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::paginate(5);
         return view ('backEnd.pages.employee.index', compact('employees'));
     }
 

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Department;
+use App\Models\Conveyance;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DepartmentController extends Controller
+class ConveyanceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $departments = Department::all();
-        return view ('backEnd.pages.department.index',compact('departments'));
+        $conveyances = Conveyance::all();
+        return view ('backEnd.pages.conveyance.index',compact('conveyances'));
     }
 
     /**
@@ -22,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view ('backEnd.pages.department.create');
+        return view ('backEnd.pages.conveyance.create');
     }
 
     /**
@@ -34,12 +34,11 @@ class DepartmentController extends Controller
             'name' => 'required'
         ]);
 
-        $department = new Department();
-        $department->name = $request->name;
-        $department->save();
+        $conveyance = new Conveyance();
+        $conveyance->name = $request->name;
+        $conveyance->save();
 
-        return redirect()->to('/admin/department')->with('success', 'A new department added successfully');
-
+        return redirect()->to('/admin/conveyance')->with('success', 'A new conveyance added successfully');
     }
 
     /**
@@ -55,8 +54,8 @@ class DepartmentController extends Controller
      */
     public function edit(string $id)
     {
-        $department = Department::find($id);
-        return view ('backEnd.pages.department.edit', compact('department'));
+        $conveyance = Conveyance::find($id);
+        return view ('backEnd.pages.conveyance.edit', compact('conveyance'));
     }
 
     /**
@@ -68,11 +67,11 @@ class DepartmentController extends Controller
             'name' => 'required'
         ]);
 
-        $department = Department::find($id);
-        $department->name = $request->name;
-        $department->save();
+        $conveyance = Conveyance::find($id);
+        $conveyance->name = $request->name;
+        $conveyance->save();
 
-        return redirect()->to('/admin/department')->with('info', 'Your department has updated successfully');
+        return redirect()->to('/admin/conveyance')->with('info', 'Your conveyance has updated successfully');
     }
 
     /**
@@ -80,8 +79,8 @@ class DepartmentController extends Controller
      */
     public function destroy(string $id)
     {
-        Department::find($id)->delete();
+        Conveyance::find($id)->delete();
 
-        return redirect()->to('/admin/department')->with('warning', 'the department has deleted successfully');
+        return redirect()->to('/admin/conveyance')->with('warning', 'the conveyance has deleted successfully');
     }
 }

@@ -16,9 +16,7 @@ class DepartmentSeeder extends Seeder
         $info = [
             ['name' => 'Network_Administration'],
             ['name' => 'Systems_Administration'],
-            ['name' => 'Software_Development'],
-            ['name' => 'IT_Operations'],
-            ['name' => 'Data_Analytics']
+            ['name' => 'Software_Development']
         ];
 
         foreach($info as $data){

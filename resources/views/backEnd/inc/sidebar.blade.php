@@ -18,7 +18,7 @@ use App\Models\Department;
 
               <li>
                 <a href="{{ route('admin.department.index') }}">
-                    <i class=" bx bx-windows"></i>
+                    <i class=" bx bx-building-house"></i>
                     <span data-key="t-calendar">Department</span>
                 </a>
             </li>
@@ -29,11 +29,25 @@ use App\Models\Department;
                     <span data-key="t-calendar">Designation</span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('admin.conveyance.index') }}">
+                    <i class=" bx bx-taxi"></i>
+                    <span data-key="t-calendar">Conveyance</span>
+                </a>
+            </li>
             
             <li>
                 <a href="{{ route('admin.employee.index') }}">
-                    <i class="bx bx-group"></i>
+                    <i class="bx bx-user"></i>
                     <span data-key="t-calendar">Employee</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.conveyance-voucher.index') }}">
+                    <i class="bx bx-detail"></i>
+                    <span data-key="t-calendar">Voucher</span>
                 </a>
             </li>
 
