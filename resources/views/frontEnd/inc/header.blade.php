@@ -30,8 +30,9 @@
             <div class="header-menu ">
                 <nav>
                     <div class="ltn__main-menu d-flex">
-                        <a href="{{ url('/') }}" class="d-flex"> <i class="dripicons-alarm dripicons-store"></i><h5 class="me-3">Home</h5></a>   
-                        <a href="{{ url('/billing-details') }}" class="d-flex"><i class="fas fa-ad  fas fa-address-card ms-3"></i><h5>Billing</h5></a>   
+                        <a href="{{ url('/') }}" class="d-flex"> <i class="dripicons-alarm dripicons-store ms-2"></i><h5 class="me-3">Home</h5></a>   
+                        <a href="{{ route('voucher.form') }}" class="d-flex"> <i class="bx bx-detail ms-2"></i><h5 class="me-3">Fill Up</h5></a>   
+                        <a href="{{ url('/billing-details') }}" class="d-flex "><i class="fas fa-ad  fas fa-address-card"></i><h5>Details</h5></a>   
                     </div>
                 </nav> 
             </div>
@@ -53,13 +54,13 @@
                     <div class="logout_panel">
                         <a class="dropdown-item" href="{{ route('employee.login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
                         <a class="dropdown-item" href="#"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
-                      <a class="dropdown-item" href="#"
+                      <a class="dropdown-item" href=""
                           onclick="
                                   event.preventDefault();
                                   document.getElementById('logout_user').submit(); "
                       ><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout </a>
   
-                      <form action="{{ route('logout') }}" method="post" class="d-none" id="logout_user">
+                      <form action="{{ route('employee.logout') }}" method="post" class="d-none" id="logout_user">
                       @csrf
                        </form>
                     </div>

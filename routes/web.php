@@ -23,10 +23,12 @@ use App\Http\Controllers\Admin\ConveyanceVoucherController;
 */
 
 Route::get('/', [HomeController::class, 'home']);
+Route::get('/voucher-from', [HomeController::class, 'voucherForm'])->name('voucher.form');
+Route::post('/voucher-from/store', [HomeController::class, 'voucherFormSubmit'])->name('voucher-from.store');
 
 Route::get('/dashboard', function () {
     return view('frontEnd.pages.dashboard');
-})->middleware(['auth'])->name('dashboard');
+} )->middleware(['auth'])->name('dashboard');
 
 
 // employee login 
@@ -36,6 +38,7 @@ Route::post('employee/logout', [EmployeeAuthController::class, 'logout'])->name(
 
 Route::middleware('auth')->group(function () {
     Route::get('/billing-details', [BillingController::class, 'billingDetailForm'])->name('billing-details');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -10,7 +10,7 @@ class EmployeeAuthController extends Controller
 
     function __construct(){
         $this->middleware('guest')->except('logout'); // jara guest ache tader logout show korbe na
-    }
+    }   
     public function login_form(){
         return view('auth.employee_login');
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('to_location');
             $table->decimal('amount', 6, 2);
             $table->string('remarks')->nullable();
+            $table->enum('status' , ['Pending', 'Cancelled', 'Paid']);
             $table->timestamps();
         });
     }
