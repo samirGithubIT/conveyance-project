@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Department;
+use App\Models\Designation;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -18,13 +20,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'department_id',
+        'designation_id',
         'name',
         'email',
+        'identity',
         'password',
+
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for serializationp.
      *
      * @var array<int, string>
      */
@@ -42,7 +48,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // custom Auth
     public function adminSection(){
         return $this->user_type == 'admin' ? true : false ;
     }
+
+
+    // relations
+    public function department(){
+        return $this->belongsTo(Department::class);
+     }
+
+     public function designation(){
+        return $this->belongsTo(Designation::class);
+     }
+
+     public static function employeeList(){
+        return self::pluck('name', 'id')->toArray();
+     }
+
+     public function ConveyanceVoucher(){
+        return $this->hasMany(ConveyanceVoucher::class);
+       }
 }

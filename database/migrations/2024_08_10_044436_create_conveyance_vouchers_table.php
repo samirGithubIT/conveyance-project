@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('conveyance_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->unsigned()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->unsigned()->constrained()->cascadeOnDelete();
+            $table->foreignId('department_id')->unsigned()->constrained()->cascadeOnDelete();
+            $table->foreignId('designation_id')->unsigned()->constrained()->cascadeOnDelete();
             $table->foreignId('conveyance_id')->unsigned()->constrained()->cascadeOnDelete();
             $table->dateTime('date');
             $table->string('from_location');

@@ -15,11 +15,6 @@ class Employee extends Model
     public function designation(){
        return $this->belongsTo(Designation::class);
     }
-
-    public static function employeeList(){
-        return self::pluck('name', 'id')->toArray();
-     }
-
      public function department(){
         return $this->belongsTo(Department::class);
      }

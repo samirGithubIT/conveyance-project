@@ -9,7 +9,7 @@
             <div class="card-header d-flex justify-content-between">
               
                     <h3>List of Employees</h3>
-                    <a href="{{ route('admin.employee.create') }}" class="btn btn-outline-primary">Add a new Employee</a>
+                    {{-- <a href="{{ route('admin.employee.create') }}" class="btn btn-outline-primary">Add a new Employee</a> --}}
                 
             </div>
             <div class="card-body">

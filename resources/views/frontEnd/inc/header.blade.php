@@ -53,7 +53,7 @@
   
                     <div class="logout_panel">
                         <a class="dropdown-item" href="{{ route('employee.login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
-                        <a class="dropdown-item" href="#"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
+                        <a class="dropdown-item" href="{{ route('register') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
                       <a class="dropdown-item" href=""
                           onclick="
                                   event.preventDefault();

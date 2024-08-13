@@ -17,8 +17,7 @@ class ConveyanceSeeder extends Seeder
             ['name' => 'Car'],
             ['name' => 'Bike'],
             ['name' => 'Cycle'],
-            ['name' => 'Rickshaw'],
-            ['name' => 'By walk']
+            ['name' => 'Rickshaw']
         ];
 
         foreach($info as $data){

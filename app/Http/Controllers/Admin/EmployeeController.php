@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
@@ -15,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate(5);
+        $employees = User::paginate(5);
         return view ('backEnd.pages.employee.index', compact('employees'));
     }
 
