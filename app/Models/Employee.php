@@ -11,15 +11,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Employee extends Model
 {
     use HasFactory;
-
-    public function designation(){
-       return $this->belongsTo(Designation::class);
-    }
-     public function department(){
-        return $this->belongsTo(Department::class);
-     }
-
-     public function ConveyanceVoucher(){
-      return $this->hasMany(ConveyanceVoucher::class);
-     }
+    
 }

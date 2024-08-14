@@ -18,8 +18,4 @@ class Designation extends Model
     public static function designationList(){
         return self::pluck('name', 'id')->toArray();
      }
-
-    public function employee(){
-        return $this->hasMany(Employee::class);
-    }
 }

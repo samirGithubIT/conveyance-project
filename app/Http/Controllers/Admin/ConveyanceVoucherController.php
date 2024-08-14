@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Employee;
 use App\Models\Conveyance;
 use Illuminate\Http\Request;
 use App\Models\ConveyanceVoucher;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class ConveyanceVoucherController extends Controller
 {
@@ -15,7 +15,7 @@ class ConveyanceVoucherController extends Controller
      */
     public function index()
     {
-        $conveyance_vouchers = ConveyanceVoucher::all();
+        $conveyance_vouchers = ConveyanceVoucher::with('user')->get();
         return view ('backEnd.pages.conveyanceVoucher.index', compact('conveyance_vouchers'));
     }
 
@@ -24,7 +24,7 @@ class ConveyanceVoucherController extends Controller
      */
     public function create()
     {
-        $employee_list = Employee::with('designation')->get();
+        $employee_list = User::with('designation')->get();
         $conveyance_list = Conveyance::conveyanceList();
         // dd($employee_list);
         return view ('backEnd.pages.conveyanceVoucher.create', compact('employee_list','conveyance_list'));
@@ -35,11 +35,10 @@ class ConveyanceVoucherController extends Controller
      */
     public function store(Request $request)
     {
-         // dd($request->all());
+        //  dd($request->all());
 
          $this->validate($request, [
             'date' => 'required',
-            'employee_id' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
@@ -49,7 +48,7 @@ class ConveyanceVoucherController extends Controller
 
         $voucher = new ConveyanceVoucher();
         $voucher->date = $request->date;
-        $voucher->employee_id = $request->employee_id;
+        $voucher->user_id = $request->user_id;
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
         $voucher->conveyance_id = $request->conveyance_id;
@@ -75,7 +74,7 @@ class ConveyanceVoucherController extends Controller
     {
         $conveyance_voucher = ConveyanceVoucher::find($id);
         $conveyance_list = Conveyance::conveyanceList();
-        $employee_list = Employee::with('designation')->get();
+        $employee_list = User::with('designation')->get();
 
         return view ('backEnd.pages.conveyanceVoucher.edit', compact('conveyance_voucher','conveyance_list','employee_list'));
     }
@@ -87,7 +86,6 @@ class ConveyanceVoucherController extends Controller
     {
          // dd($request->all());
          $this->validate($request, [
-            'employee_id' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
@@ -97,7 +95,7 @@ class ConveyanceVoucherController extends Controller
 
 
         $conveyance_voucher = ConveyanceVoucher::find($id);
-        $conveyance_voucher->employee_id = $request->employee_id;
+        $conveyance_voucher->user_id = $request->user_id;
         $conveyance_voucher->from_location = $request->from_location;
         $conveyance_voucher->to_location = $request->to_location;
         $conveyance_voucher->conveyance_id = $request->conveyance_id;

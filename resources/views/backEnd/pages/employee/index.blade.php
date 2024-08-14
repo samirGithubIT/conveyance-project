@@ -31,11 +31,13 @@
                                     <td>{{ $employee->id }}</td>     
                                     <td>{{ $employee->name }}</td>     
                                     <td>{{ $employee->identity }}</td>     
-                                    <td>{{ $employee->designation->name }}</td>    
-                                    <td>{{ $employee->designation->department->name }}</td>     
+                                    <td>{{ $employee->designation_id ?? 'null'}}</td>    
+                                    <td>{{ $employee->department_id ?? 'null'}}</td>     
                                     <td>
                                         <div class="actions">
-                                            <a href="{{ route('admin.employee.edit',$employee->id) }}" class="btn btn-outline-info">Edit</a>
+                                            
+                                            {{-- <a href="{{ route('admin.employee.edit',$employee->id) }}" class="btn btn-outline-info">Edit</a> --}}
+
                                             {{-- delete method --}}
                                             <a href="" class="btn btn-outline-danger"
                                                 onclick="
@@ -54,9 +56,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                {{-- for paginate --}}
-                {!! $employees->links() !!}
             </div>
         </div>
     </div>

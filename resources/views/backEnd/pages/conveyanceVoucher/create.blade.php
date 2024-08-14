@@ -26,11 +26,11 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Select Employee</label>
-                            <select name="employee_id" id="#" class="form-select">
+                            <select name="user_id" id="#" class="form-select">
                                 <option value="">-- SELECT --</option>
 
                                 @foreach ( $employee_list as $employee)
-                                <option value="{{ $employee->id }}">{{ $employee->name }} - ({{ $employee->designation->name }})</option>
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
 
                             </select>

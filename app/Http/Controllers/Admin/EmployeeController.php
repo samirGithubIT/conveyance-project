@@ -16,7 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = User::paginate(5);
+        $employees = User::with('designation','department')->get();
+
+        // dd($employees);
         return view ('backEnd.pages.employee.index', compact('employees'));
     }
 
@@ -46,7 +48,7 @@ class EmployeeController extends Controller
             'designation_id' => 'required',
         ]);
 
-        $employee = new Employee();
+        $employee = new User();
         $employee->name = $request->name;
         $employee->identity = $request->identity;
         $employee->designation_id = $request->designation_id;
@@ -70,7 +72,7 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        $employee = Employee::find($id);
+        $employee = User::find($id);
         // for relation
         $department_list = Department::departmentLists(); 
         $designation_list = Designation::designationList(); 
@@ -90,7 +92,7 @@ class EmployeeController extends Controller
             'designation_id' => 'required',
         ]);
 
-        $employee = Employee::find($id);
+        $employee = User::find($id);
         $employee->name = $request->name;
         $employee->identity = $request->identity;
         $employee->designation_id = $request->designation_id;

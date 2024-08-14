@@ -22,21 +22,13 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Employee</label>
-                    <input type="text" name="employee_id" class="form-control" >
-                        {{-- <option value="{{ $employee->id }}">{{ $employee->name }} - ({{ $employee->designation->name }})</option> --}}
-                        {{-- @if ($employee->emolyee_id == $emolyee->id)
-                        selected
-                        @endif --}}
-
-                    @error('employee_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    {{-- user id find korar jonno --}}
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> 
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label"> From -</label>
-                    <input type="text" name="from_location" id="" class="form-control">
+                    <input type="text" name="from_location" id="" class="form-control" value="{{ old('from_location') }}">
 
                     @error('from_location')
                         <span class="text-danger">{{ $message }}</span>
@@ -45,7 +37,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label"> - To </label>
-                    <input type="text" name="to_location" id="" class="form-control">
+                    <input type="text" name="to_location" id="" class="form-control" value="{{ old('to_location') }}">
 
                     @error('to_location')
                         <span class="text-danger">{{ $message }}</span>
@@ -70,7 +62,7 @@
                
                 <div class="mb-3">
                     <label for="" class="form-label"> Amount tk. </label>
-                    <input type="text" name="amount" id="" class="form-control">
+                    <input type="text" name="amount" id="" class="form-control" value="{{ old('amount') }}">
 
                     @error('amount')
                         <span class="text-danger">{{ $message }}</span>
@@ -79,7 +71,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label"> Remarks (optional) </label>
-                    <input type="text" name="remarks" id="" class="form-control">
+                    <input type="text" name="remarks" id="" class="form-control" value="{{ old('remarks') }}">
 
                     @error('remarks')
                         <span class="text-danger">{{ $message }}</span>

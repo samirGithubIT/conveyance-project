@@ -77,11 +77,11 @@
                             </div>
     
                             <!-- Employee ID -->
-                            {{-- <div class="mb-3">
+                            <div class="mb-3">
                                 <x-input-label for="identity" :value="__('identity')" class="form-label" />
                                 <x-text-input id="identity" class="form-control" type="text" name="identity" :value="old('identity')" required autocomplete="Employee ID" />
                                 <x-input-error :messages="$errors->get('identity')" class="text-danger mt-2" />
-                            </div> --}}
+                            </div>
     
                             <!-- Department -->
                             <div class="mb-3">
@@ -136,6 +136,7 @@
         </div>
     </div>
 
+    {{-- jqury CDN --}}
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Department extends Model
 {
@@ -12,6 +13,11 @@ class Department extends Model
     public function designations()
     {
       $this->hasMany(Designation::class);
+    }
+    
+    public function users()
+    {
+      $this->hasMany(User::class);
     }
 
      public static function departmentLists(){

@@ -33,7 +33,7 @@
                               <tr>
                                     <td>{{ $conveyance_voucher->id }}</td>
                                     <td>{{ $conveyance_voucher->date }}</td>
-                                    <td>{{ $conveyance_voucher->employee->name }}</td>
+                                    <td>{{ $conveyance_voucher->user->name }}</td>
                                     <td>{{ $conveyance_voucher->from_location }}</td>
                                     <td>{{ $conveyance_voucher->to_location }}</td>
                                     <td>{{ $conveyance_voucher->conveyance->name }}</td>

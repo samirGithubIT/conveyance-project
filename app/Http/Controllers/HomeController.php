@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Employee;
 use App\Models\Conveyance;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class HomeController extends Controller
 
     public function voucherForm(){
 
-        $employee_list = Employee::with('designation')->get();
+        $employee_list = User::with('designation')->get();
         $conveyance_list = Conveyance::conveyanceList();
 
         return view ('frontEnd.pages.voucher_entry', compact('employee_list','conveyance_list'));
@@ -26,9 +27,10 @@ class HomeController extends Controller
 
     public function voucherFormSubmit(Request $request){
         
+        
+
         $this->validate($request, [
             'date' => 'required',
-            'employee_id' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
@@ -38,7 +40,7 @@ class HomeController extends Controller
 
         $voucher = new ConveyanceVoucher();
         $voucher->date = $request->date;
-        $voucher->employee_id = $request->employee_id;
+        $voucher->user_id = $request->user_id;
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
         $voucher->conveyance_id = $request->conveyance_id;
