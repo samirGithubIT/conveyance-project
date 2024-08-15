@@ -8,10 +8,14 @@
                  <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h5>Billing Details of <strong>{{ Auth::user()->name }}</strong></h5>
-                        <a href="{{ url('/') }}" class="btn btn-outline-success px-3"> Go To Back </a>
+                        {{-- <h5>Payment Status : {{  $conveyance->status }} --}}
+                            {{-- @foreach ( $conveyance as $payment_status )
+                            {{  $payment_status->status }}
+                            @endforeach --}}
+                        </h5>
                     </div>
                     <div class="card-body">
-                        <table class="table table-stripped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>SL.</th>
@@ -37,6 +41,9 @@
                                @endforeach
                             </tbody>
                         </table>
+                        <div class="button">
+                            <a href="{{ url('/') }}" class="btn btn-outline-success px-3"> Go To Back </a>
+                        </div>
                     </div>
                  </div>
             </div>

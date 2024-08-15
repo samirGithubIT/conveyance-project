@@ -52,17 +52,24 @@
                     <div class="dropdown-divider"></div>
   
                     <div class="logout_panel">
-                        <a class="dropdown-item" href="{{ route('employee.login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
-                        <a class="dropdown-item" href="{{ route('register') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
+                      @auth
+
                       <a class="dropdown-item" href=""
-                          onclick="
-                                  event.preventDefault();
-                                  document.getElementById('logout_user').submit(); "
-                      ><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout </a>
-  
-                      <form action="{{ route('employee.logout') }}" method="post" class="d-none" id="logout_user">
-                      @csrf
-                       </form>
+                      onclick="
+                              event.preventDefault();
+                              document.getElementById('logout_user').submit(); "
+                  ><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout </a>
+
+                  <form action="{{ route('employee.logout') }}" method="post" class="d-none" id="logout_user">
+                  @csrf
+                   </form>
+
+                   @else
+
+                   <a class="dropdown-item" href="{{ route('employee.login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
+                   <a class="dropdown-item" href="{{ route('register') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
+
+                   @endauth
                     </div>
   
                 </div>

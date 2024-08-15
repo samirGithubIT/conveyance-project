@@ -9,7 +9,7 @@
             <h5>please enter your details in this voucher</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('voucher-from.store') }}" method="POST">
+            <form action="{{ route('voucher-form.store') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">

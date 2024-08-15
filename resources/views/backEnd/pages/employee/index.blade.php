@@ -31,8 +31,8 @@
                                     <td>{{ $employee->id }}</td>     
                                     <td>{{ $employee->name }}</td>     
                                     <td>{{ $employee->identity }}</td>     
-                                    <td>{{ $employee->designation_id ?? 'null'}}</td>    
-                                    <td>{{ $employee->department_id ?? 'null'}}</td>     
+                                    <td>{{ $employee->designation->name ?? 'null'}}</td>    
+                                    <td>{{ $employee->designation->department->name ?? 'null'}}</td>     
                                     <td>
                                         <div class="actions">
                                             

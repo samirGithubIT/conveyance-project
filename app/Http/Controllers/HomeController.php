@@ -19,13 +19,12 @@ class HomeController extends Controller
 
     public function voucherForm(){
 
-        $employee_list = User::with('designation')->get();
         $conveyance_list = Conveyance::conveyanceList();
 
-        return view ('frontEnd.pages.voucher_entry', compact('employee_list','conveyance_list'));
+        return view ('frontEnd.pages.voucher_entry', compact('conveyance_list'));
     }
 
-    public function voucherFormSubmit(Request $request){
+    public function voucherFormStore(Request $request){
         
         
 

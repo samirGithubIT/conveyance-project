@@ -35,15 +35,16 @@ Route::post('employee/login', [EmployeeAuthController::class, 'login']);     // 
 Route::post('employee/logout', [EmployeeAuthController::class, 'logout'])->name('employee.logout');     
 
 Route::middleware('auth')->group(function () {
-    // billing _ form
-    Route::get('/billing-details', [BillingController::class, 'billingDetailForm'])->name('billing-details');
-    // voucher _ submit and show
-    Route::get('/voucher-from', [HomeController::class, 'voucherForm'])->name('voucher.form');
-    Route::post('/voucher-from/store', [HomeController::class, 'voucherFormSubmit'])->name('voucher-from.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // billing _ form
+    Route::get('/billing-details', [BillingController::class, 'billingDetailForm'])->name('billing-details');
+    // voucher _ submit and show
+    Route::get('/voucher-from', [HomeController::class, 'voucherForm'])->name('voucher.form');
+    Route::post('/voucher-from/store', [HomeController::class, 'voucherFormStore'])->name('voucher-form.store');
 });
 
 require __DIR__.'/auth.php'; 

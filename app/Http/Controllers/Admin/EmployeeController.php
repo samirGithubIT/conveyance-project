@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = User::with('designation','department')->get();
+        $employees = User::with('designation')->get();
 
         // dd($employees);
         return view ('backEnd.pages.employee.index', compact('employees'));
