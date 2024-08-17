@@ -17,9 +17,9 @@
         
                         <div class="mb-3">
                             <label for="" class="form-label"> Select Date </label>
-                            <input type="date" name="date" id="" class="form-control">
+                            <input type="date" name="created_at" id="" class="form-control">
         
-                            @error('date')
+                            @error('created_at')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

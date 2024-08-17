@@ -26,7 +26,7 @@
 
                                         @if ($conveyance_voucher->employee_id == $employee->id)
                                             selected
-                                        @endif>{{ $employee->name }} - ({{ $employee->designation->name }})</option>
+                                        @endif>{{ $employee->name }} - ({{ $employee->designation->name ?? 'none' }})</option>
                                 @endforeach
 
                             </select>

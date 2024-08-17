@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unsigned();
             $table->integer('total_amount');
-            $table->enum('status' , ['Pending', 'Cancelled', 'Paid']);
+            $table->enum('payment_status' , ['Pending', 'Cancelled', 'Paid']);
             $table->timestamps();
         });
     }

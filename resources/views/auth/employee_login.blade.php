@@ -24,17 +24,12 @@
                         <div class="auth-full-page-content d-flex p-sm-5 p-4">
                             <div class="w-100">
                                 <div class="d-flex flex-column h-100">
-                                    <div class="mb-4 mb-md-5 text-center">
-                                        <a href="index.html" class="d-block auth-logo">
-                                            <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="28"> <span class="logo-txt">Minia</span>
-                                        </a>
-                                    </div>
                                     <div class="auth-content my-auto">
                                         <div class="text-center">
                                             <h5 class="mb-0">Welcome Back !</h5>
                                             <p class="text-muted mt-2">Sign in to continue.</p>
                                         </div>
-                                        <form class="mt-4 pt-2" action="{{ route('employee.login') }}" method="post">
+                                        <form class="mt-4 pt-2" action="{{ route('login') }}" method="post">
                                             @csrf
                                             <div class="mb-3">
                                                 <label class="form-label">Enter Your E-mail</label>

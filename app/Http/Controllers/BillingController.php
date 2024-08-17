@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BillingDetail;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\ConveyanceVoucher;
@@ -13,17 +14,12 @@ class BillingController extends Controller
 
         $user = Auth::user();
         $conveyance = $user->ConveyanceVoucher;
-
-        // dd($conveyance);
-
-        // for user ID
-
-        // $payment_status = ConveyanceVoucher::where('user_id',Auth::user()->id)->get();
-        //  $conveyance_status = ConveyanceVoucher::all();
-
-        // return $conveyance;
+        
+        
         return view ('frontEnd.pages.billing_details', compact('conveyance'));
-
+        
+        // $billings = $user->billing->conveyanceVoucher;
+        // return view ('frontEnd.pages.billing_details', compact('billings'));
 
     }
 }

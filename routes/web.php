@@ -30,8 +30,8 @@ Route::get('/dashboard', function () {
 
 
 // employee login 
-Route::get('employee/login', [EmployeeAuthController::class, 'login_form'])->name('employee.login');
-Route::post('employee/login', [EmployeeAuthController::class, 'login']);     // same route but alada method thakle ek route use kora jai 
+Route::get('/login', [EmployeeAuthController::class, 'login_form'])->name('login');
+Route::post('/login', [EmployeeAuthController::class, 'login']);     // same route but alada method thakle ek route use kora jai 
 Route::post('employee/logout', [EmployeeAuthController::class, 'logout'])->name('employee.logout');     
 
 Route::middleware('auth')->group(function () {
@@ -52,7 +52,7 @@ require __DIR__.'/auth.php';
 
 // admin panel 
 
-Route::middleware('auth','admin_section')->prefix('admin')->name('admin.')->group(function (){
+Route::middleware(['auth','admin_section'])->prefix('admin')->name('admin.')->group(function (){
 
     Route::get('/dashboard', function () {
         return view('backEnd.pages.home');
@@ -63,6 +63,7 @@ Route::middleware('auth','admin_section')->prefix('admin')->name('admin.')->grou
     Route::resource('employee',EmployeeController::class);
     Route::resource('conveyance',ConveyanceController::class);
     Route::resource('conveyance-voucher',ConveyanceVoucherController::class);
+    Route::post('voucher-accept',[ConveyanceVoucherController::class, 'AcceptVoucher'])->name('voucher.accept');
     
 
 });

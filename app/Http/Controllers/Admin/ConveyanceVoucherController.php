@@ -38,7 +38,7 @@ class ConveyanceVoucherController extends Controller
         //  dd($request->all());
 
          $this->validate($request, [
-            'date' => 'required',
+            'created_at' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
@@ -47,7 +47,7 @@ class ConveyanceVoucherController extends Controller
         ]);
 
         $voucher = new ConveyanceVoucher();
-        $voucher->date = $request->date;
+        $voucher->created_at = $request->created_at;
         $voucher->user_id = $request->user_id;
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
@@ -64,7 +64,9 @@ class ConveyanceVoucherController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $conveyance_voucher = ConveyanceVoucher::with('user')->find($id);
+
+        return view('backEnd.pages.conveyanceVoucher.show',compact('conveyance_voucher'));
     }
 
     /**
@@ -114,5 +116,19 @@ class ConveyanceVoucherController extends Controller
         ConveyanceVoucher::find($id)->delete();
 
         return redirect()->to('/admin/conveyance-voucher')->with('warning', 'A new Voucher deleted successfully');
+    }
+
+
+    public function AcceptVoucher(Request $request){
+        // return $request->all();
+
+        $conveyance_id = $request->conveyance_id;
+        $status = $request->status;
+
+        $conveyance_voucher = ConveyanceVoucher::find($conveyance_id);
+        $conveyance_voucher->status = $status; 
+        $conveyance_voucher->save(); 
+
+        return redirect()->to('admin/conveyance-voucher')->with('success','payment ' .$status. 'successfully');
     }
 }

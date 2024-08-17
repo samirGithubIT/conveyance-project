@@ -6,6 +6,30 @@
 <div class="container">
     <div class="row">
         <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <div>
+                            <label for="" class="form-label">Select PaymentStatus</label>
+        
+                            <select name="status" id="#" class="form-select">
+                                <option value="">-- SELECT --</option>
+        
+                                @foreach ( paymentStatusOption() as $status)
+                                <option value="{{ $status }}" > {{ $status }} </option>
+                                @endforeach
+        
+                            </select>
+        
+                            @error('status')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
             <div class="card-header d-flex justify-content-between">
               
                     <h3>List of Reports</h3>
@@ -19,12 +43,8 @@
                         <tr>
                             <th>SL.</th>
                             <th>Date</th>
-                            <th>Name</th>  
-                            <th>From -</th>  
-                            <th>- To</th>  
-                            <th>Mode of Conveyance</th>  
-                            <th>Amount TK.</th>  
-                            <th>remarks</th>  
+                            <th>Name</th>
+                            <th>Payment Status</th>  
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -32,16 +52,13 @@
                         @foreach ( $conveyance_vouchers as $conveyance_voucher )
                               <tr>
                                     <td>{{ $conveyance_voucher->id }}</td>
-                                    <td>{{ $conveyance_voucher->date }}</td>
+                                    <td>{{ $conveyance_voucher->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $conveyance_voucher->user->name }}</td>
-                                    <td>{{ $conveyance_voucher->from_location }}</td>
-                                    <td>{{ $conveyance_voucher->to_location }}</td>
-                                    <td>{{ $conveyance_voucher->conveyance->name }}</td>
-                                    <td>{{ $conveyance_voucher->amount }}</td>
-                                    <td>{{ $conveyance_voucher->remarks }}</td>
+                                    <td>{!! paymentStatus($conveyance_voucher->status) !!}</td>
                                     
                                     <td>
                                         <div class="actions">
+                                            <a href="{{ route('admin.conveyance-voucher.show', $conveyance_voucher->id) }}" class="btn btn-outline-warning">Show</a>
                                             <a href="{{ route('admin.conveyance-voucher.edit', $conveyance_voucher->id) }}" class="btn btn-outline-info">Edit</a>
                                             {{-- delete method --}}
                                             <a href="" class="btn btn-outline-danger"

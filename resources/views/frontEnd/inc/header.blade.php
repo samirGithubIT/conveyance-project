@@ -29,11 +29,19 @@
 
             <div class="header-menu ">
                 <nav>
+                    @if (Auth::check() && Auth::user()->adminSection())
+
+                    <a href="{{ url('/admin/dashboard') }}" class="d-flex"> <i class="dripicons-alarm dripicons-store ms-2"></i><h5 class="me-3">Admin Page</h5></a>   
+
+                    @else
+                        
                     <div class="ltn__main-menu d-flex">
                         <a href="{{ url('/') }}" class="d-flex"> <i class="dripicons-alarm dripicons-store ms-2"></i><h5 class="me-3">Home</h5></a>   
                         <a href="{{ route('voucher.form') }}" class="d-flex"> <i class="bx bx-detail ms-2"></i><h5 class="me-3">Fill Up</h5></a>   
                         <a href="{{ url('/billing-details') }}" class="d-flex "><i class="fas fa-ad  fas fa-address-card"></i><h5>Details</h5></a>   
                     </div>
+                    
+                    @endif
                 </nav> 
             </div>
   
@@ -66,7 +74,7 @@
 
                    @else
 
-                   <a class="dropdown-item" href="{{ route('employee.login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
+                   <a class="dropdown-item" href="{{ route('login') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Login </a>
                    <a class="dropdown-item" href="{{ route('register') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Register </a>
 
                    @endauth

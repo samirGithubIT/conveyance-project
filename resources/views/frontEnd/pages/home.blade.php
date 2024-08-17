@@ -13,6 +13,7 @@
             Welcome, <strong class="text-info">{{ Auth::user()->name ?? 'User' }}</strong>! 🎉
         </h5>
     
+        @if ( Auth::user())
         <div class="info d-flex justify-content-center align-items-center my-5 p-4 bg-white rounded shadow-sm hover-shadow transition">
             <h4 class="text-dark mb-0 me-3">📋 For your details:</h4>
             <a href="{{ route('billing-details') }}" class="btn btn-info text-white py-2 px-4 rounded-pill">Click Me!</a>
@@ -23,5 +24,6 @@
             <a href="{{ route('voucher.form') }}" class="btn btn-info text-white py-2 px-4 rounded-pill">Click here</a>
         </div>
     </div>
+        @endif
 
 @endsection

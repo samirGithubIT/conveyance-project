@@ -12,7 +12,7 @@ class EmployeeAuthController extends Controller
         $this->middleware('guest')->except('logout'); // jara guest ache tader logout show korbe na
     }   
     public function login_form(){
-        return view('auth.employee_login');
+        return view('auth.main_login');
     }
 
     public function login(Request $request){

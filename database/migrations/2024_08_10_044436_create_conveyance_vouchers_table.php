@@ -15,12 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unsigned()->constrained()->cascadeOnDelete();
             $table->foreignId('conveyance_id')->unsigned()->constrained()->cascadeOnDelete();
-            $table->dateTime('date');
             $table->string('from_location');
             $table->string('to_location');
             $table->decimal('amount', 6, 2);
             $table->string('remarks')->nullable();
-            $table->enum('status' , ['Pending', 'Cancelled', 'Paid']);
+            $table->enum('status' , ['pending', 'paid']);
             $table->timestamps();
         });
     }

@@ -29,7 +29,7 @@ class HomeController extends Controller
         
 
         $this->validate($request, [
-            'date' => 'required',
+            'created_at' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
@@ -38,7 +38,7 @@ class HomeController extends Controller
         ]);
 
         $voucher = new ConveyanceVoucher();
-        $voucher->date = $request->date;
+        $voucher->created_at = $request->created_at;
         $voucher->user_id = $request->user_id;
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
