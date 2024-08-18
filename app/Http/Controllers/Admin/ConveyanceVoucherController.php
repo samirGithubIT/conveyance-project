@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Models\Conveyance;
 use Illuminate\Http\Request;
 use App\Models\ConveyanceVoucher;
@@ -119,16 +120,47 @@ class ConveyanceVoucherController extends Controller
     }
 
 
+
+
+    // for payment status
     public function AcceptVoucher(Request $request){
         // return $request->all();
 
-        $conveyance_id = $request->conveyance_id;
+        $conveyanceVoucher_id = $request->conveyanceVoucher_id; // see in show.blade.php
         $status = $request->status;
 
-        $conveyance_voucher = ConveyanceVoucher::find($conveyance_id);
+        $conveyance_voucher = ConveyanceVoucher::find($conveyanceVoucher_id); // conveyance voucher table er id 
         $conveyance_voucher->status = $status; 
         $conveyance_voucher->save(); 
 
         return redirect()->to('admin/conveyance-voucher')->with('success','payment ' .$status. 'successfully');
     }
+
+    // for filtering
+
+    public function SearchVoucher(Request $request){
+        // return $request->all();
+
+        $user_id = $request->user_id;
+        $status = $request->status;
+
+        $conveyance_vouchers = ConveyanceVoucher::where(function($query) use($user_id, $status){
+
+            // for user_id
+            if(!empty($user_id)){
+                $query->where('user_id', $user_id);
+            }
+            // for payment status
+            if(!empty($status)){
+                $query->where('status', $status);
+            }
+
+        })->get();
+
+        // return $conveyanceVoucher;
+        return view ('backEnd.pages.conveyanceVoucher.index', compact('conveyance_vouchers')); //index er sathe match korte hobe
+        
+    }
+
+
 }

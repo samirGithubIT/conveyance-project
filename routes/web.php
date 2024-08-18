@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function () {
 
     // billing _ form
     Route::get('/billing-details', [BillingController::class, 'billingDetailForm'])->name('billing-details');
+    Route::get('/voucher-search', [BillingController::class, 'voucherFormSearch'])->name('voucher.search');
+    // pdf shown
+    Route::get('billing-details/viewPdf-File', [BillingController::class, 'viewPdf'])->name('voucher.pdf');
+   
     // voucher _ submit and show
     Route::get('/voucher-from', [HomeController::class, 'voucherForm'])->name('voucher.form');
     Route::post('/voucher-from/store', [HomeController::class, 'voucherFormStore'])->name('voucher-form.store');
@@ -64,22 +68,9 @@ Route::middleware(['auth','admin_section'])->prefix('admin')->name('admin.')->gr
     Route::resource('conveyance',ConveyanceController::class);
     Route::resource('conveyance-voucher',ConveyanceVoucherController::class);
     Route::post('voucher-accept',[ConveyanceVoucherController::class, 'AcceptVoucher'])->name('voucher.accept');
-    
+    Route::get('voucher-search',[ConveyanceVoucherController::class, 'SearchVoucher'])->name('voucher.search');
 
 });
-
-
-// Route::get('/data/department/{department_id}/designations', function($department_id){
-//     $designations = Designation::where('department_id', $department_id)->get();
-
-//     $string = "";
-
-//     foreach($designations as $designation){
-        // $string = $string . '<option value="' . $designation->id . '">' . $designation->name . '</option>';
-//     }
-    
-//     return $string;
-// });
 
 
 Route::get('/data/department/{department_id}/designations', function($department_id){

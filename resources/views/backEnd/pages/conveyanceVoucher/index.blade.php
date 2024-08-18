@@ -7,26 +7,58 @@
     <div class="row">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4 d-flex">
-                        <div>
-                            <label for="" class="form-label">Select PaymentStatus</label>
-        
-                            <select name="status" id="#" class="form-select">
-                                <option value="">-- SELECT --</option>
-        
-                                @foreach ( paymentStatusOption() as $status)
-                                <option value="{{ $status }}" > {{ $status }} </option>
-                                @endforeach
-        
-                            </select>
-        
-                            @error('status')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+
+                <form action="{{ route('admin.voucher.search') }}" method="get">
+                    <div class="row d-flex">
+                        <div class="col-auto">
+                                {{-- filtering --}}
+                                <label for="" class="form-label">Select PaymentStatus</label>
+            
+                                <select name="status" id="#" class="form-select">
+                                    <option value="">-- SELECT --</option>
+            
+                                    @foreach ( paymentStatusOption() as $status)
+                                    <option value="{{ $status }}"
+
+                                    {{-- selected rakhar jonne --}}
+                                     {{  request()->status == $status ? 'selected' : '' }}
+                                    
+                                    > {{ $status }} </option>
+                                    @endforeach
+            
+                                </select>
+            
+                                @error('status')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                        </div>
+                        <div class="col-auto">
+                            <label for="" class="form-label">Select Name</label>
+            
+                                <select name="user_id" id="user_id" class="form-select">
+                                    <option value="">-- SELECT --</option>
+            
+                                    @foreach ( App\Models\User::all() as $user)
+                                    <option value="{{ $user->id }}" 
+                                        
+                                     {{-- selected rakhar jonne --}}
+                                     {{  request()->user_id == $user->id ? 'selected' : '' }}
+
+                                        > {{ $user->name }} </option>
+                                    @endforeach
+            
+                                </select>
+            
+                                @error('status')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-outline-info mt-4" type="submit">Search</button>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
         <div class="card">

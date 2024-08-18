@@ -63,8 +63,9 @@
                     @csrf
 
                  <div class="user">
-                    <input type="hidden" name="conveyance_id" value="{{ $conveyance_voucher->id }}"> 
+                    <input type="hidden" name="conveyanceVoucher_id" value="{{ $conveyance_voucher->id }}"> 
                  </div>
+                 
                 <div class="my-4">
                     <label for="" class="form-label">Select PaymentStatus</label>
 

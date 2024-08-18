@@ -49,4 +49,6 @@ class HomeController extends Controller
 
         return redirect()->to('/billing-details')->with('success','Data Entry Completed');
     }
+
+   
 }
