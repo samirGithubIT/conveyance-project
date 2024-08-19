@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/billing-details', [BillingController::class, 'billingDetailForm'])->name('billing-details');
     Route::get('/voucher-search', [BillingController::class, 'voucherFormSearch'])->name('voucher.search');
     // pdf shown
-    Route::get('billing-details/viewPdf-File', [BillingController::class, 'viewPdf'])->name('voucher.pdf');
+    Route::get('billing-details/{id}/viewPdf-File', [BillingController::class, 'viewPdf'])->name('voucher.pdf');
    
     // voucher _ submit and show
     Route::get('/voucher-from', [HomeController::class, 'voucherForm'])->name('voucher.form');

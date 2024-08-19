@@ -27,7 +27,7 @@ class ConveyanceVoucherController extends Controller
     {
         $employee_list = User::with('designation')->get();
         $conveyance_list = Conveyance::conveyanceList();
-        // dd($employee_list);
+        
         return view ('backEnd.pages.conveyanceVoucher.create', compact('employee_list','conveyance_list'));
     }
 
@@ -36,13 +36,13 @@ class ConveyanceVoucherController extends Controller
      */
     public function store(Request $request)
     {
-        //  dd($request->all());
 
          $this->validate($request, [
             'created_at' => 'required',
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
+            'companions_count' => 'required',
             'amount' => 'required',
 
         ]);
@@ -53,6 +53,7 @@ class ConveyanceVoucherController extends Controller
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
         $voucher->conveyance_id = $request->conveyance_id;
+        $voucher->companions_count = $request->companions_count;
         $voucher->amount = $request->amount;
         $voucher->remarks = $request->remarks;
         $voucher->save();
@@ -87,11 +88,11 @@ class ConveyanceVoucherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         // dd($request->all());
          $this->validate($request, [
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
+            'People with you' => 'required',
             'amount' => 'required',
 
         ]);
@@ -102,6 +103,7 @@ class ConveyanceVoucherController extends Controller
         $conveyance_voucher->from_location = $request->from_location;
         $conveyance_voucher->to_location = $request->to_location;
         $conveyance_voucher->conveyance_id = $request->conveyance_id;
+        $conveyance_voucher->companions_count = $request->companions_count;
         $conveyance_voucher->amount = $request->amount;
         $conveyance_voucher->remarks = $request->remarks;
         $conveyance_voucher->save();
@@ -124,7 +126,6 @@ class ConveyanceVoucherController extends Controller
 
     // for payment status
     public function AcceptVoucher(Request $request){
-        // return $request->all();
 
         $conveyanceVoucher_id = $request->conveyanceVoucher_id; // see in show.blade.php
         $status = $request->status;
@@ -139,7 +140,6 @@ class ConveyanceVoucherController extends Controller
     // for filtering
 
     public function SearchVoucher(Request $request){
-        // return $request->all();
 
         $user_id = $request->user_id;
         $status = $request->status;
@@ -157,7 +157,6 @@ class ConveyanceVoucherController extends Controller
 
         })->get();
 
-        // return $conveyanceVoucher;
         return view ('backEnd.pages.conveyanceVoucher.index', compact('conveyance_vouchers')); //index er sathe match korte hobe
         
     }

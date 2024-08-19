@@ -33,6 +33,7 @@ class HomeController extends Controller
             'from_location' => 'required',
             'to_location' => 'required',
             'conveyance_id' => 'required',
+            'companions_count' => 'required',
             'amount' => 'required',
 
         ]);
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $voucher->from_location = $request->from_location;
         $voucher->to_location = $request->to_location;
         $voucher->conveyance_id = $request->conveyance_id;
+        $voucher->companions_count = $request->companions_count;
         $voucher->amount = $request->amount;
         $voucher->remarks = $request->remarks;
         $voucher->save();

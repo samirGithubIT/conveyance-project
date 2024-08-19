@@ -36,17 +36,21 @@ class BillingController extends Controller
         return view ('frontEnd.pages.billing_details', compact('conveyance'));
     }
 
-    public function viewPdf()
+    public function viewPdf($id)
     {
+        
+       $user = User::with(['ConveyanceVoucher' => function ($query){
+        $query->where('status', 'paid'); // jgulo paid hobe oigulo show korbe.
+       }])->find($id);  
 
-        $userId = Auth::id();
-        $vouchers = ConveyanceVoucher::where('user_id', $userId)->with('user')->get();
-
-        // return $user_id;
+     
+      $totalAmount = $user->ConveyanceVoucher->sum('amount');  // Calculate the total amount
 
         $data = [
             
-            'vouchers' => $vouchers,
+            'user' => $user,
+            'vouchers' => $user->ConveyanceVoucher,
+            'totalAmount' => $totalAmount
         ];
 
         $pdf = PDF::loadView('pdf.document', $data);

@@ -61,6 +61,7 @@
 
             </div>
         </div>
+
         <div class="card">
             <div class="card-header d-flex justify-content-between">
               
@@ -73,20 +74,30 @@
                 <table class="table table-stripped table-hover">
                     <thead>
                         <tr>
+                            <th>Check</th>
                             <th>SL.</th>
                             <th>Date</th>
                             <th>Name</th>
                             <th>Payment Status</th>  
+                            <th> paid At </th>  
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ( $conveyance_vouchers as $conveyance_voucher )
                               <tr>
-                                    <td>{{ $conveyance_voucher->id }}</td>
+                                    <td><input type="checkbox" name="" id="" value="{{ $conveyance_voucher->id }}"></td>
+                                    <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $conveyance_voucher->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $conveyance_voucher->user->name }}</td>
                                     <td>{!! paymentStatus($conveyance_voucher->status) !!}</td>
+                                    <td> 
+                                        @if ($conveyance_voucher->status == 'paid')
+                                            {{ $conveyance_voucher->updated_at->format('d M Y, h:i A') }}
+                                        @else
+                                            <h5 class="text-warning bg-dark badge">Not Paid Yet</h5>    
+                                        @endif    
+                                    </td>
                                     
                                     <td>
                                         <div class="actions">

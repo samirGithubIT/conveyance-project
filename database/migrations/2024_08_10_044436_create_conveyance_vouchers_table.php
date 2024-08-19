@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('conveyance_id')->unsigned()->constrained()->cascadeOnDelete();
             $table->string('from_location');
             $table->string('to_location');
+            $table->string('companions_count');
             $table->decimal('amount', 6, 2);
-            $table->string('remarks')->nullable();
+            $table->text('remarks')->nullable();
             $table->enum('status' , ['pending', 'paid']);
             $table->timestamps();
         });

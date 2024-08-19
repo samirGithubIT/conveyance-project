@@ -21,73 +21,59 @@
             margin-bottom: 20px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .card-header {
-            background-color: #f4f4f4;
-            color: #000000;
+        .header {
+            background-color: #dddddd;
+            color: #fff;
             padding: 10px 15px;
             border-radius: 5px 5px 0 0;
-        }
-        .card-header h5 {
-            margin: 0;
-            font-size: 20px;
-        }
-        .card-body {
-            padding: 15px;
+            font-size: 18px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            
         }
         th, td {
-            padding-left: 10px;
+            padding: 10px;
+            /* padding-top: 5px;
+            padding-bottom: 5px; */
             border: 1px solid #ddd;
             text-align: left;
         }
         th {
             background-color: #f2f2f2;
-            padding-left: 10px;
             font-weight: bold;
             text-align: center;
-        }
-        .total{
-            text-align: right;
-        }
-        .table-stripped tbody tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
+            padding: 10px;
         }
         .total-row {
             font-weight: bold;
-            background-color: #e0e0e0;
+            background-color: #d8d8d8;
             color: #fff;
         }
-    </style>4
+    </style>
 </head>
 <body>
     <div class="card">
         <div class="card-header">
             <h5>Conveyance Voucher</h5>
         </div>
+        
         <div class="card-body">
             <table class="table table-stripped table-hover">
              
               <tr>
                 <th>Name of Employee :</th>
-                <td colspan="2">samir </td>
+                <td colspan="2"> {{ $user->name }} </td>
                 <th>Designation :</th>
-                {{-- <td colspan="2">{{ $vouchers->user->designation->name ?? 'none' }}</td> --}}
-                <td colspan="2"> IT </td>
-            </tr>
+                <td colspan="2">{{ $user->designation->name ?? 'none' }}</td>
+              </tr>
             <tr>
                 <th>Department :</th>
-                {{-- <td colspan="2">{{ $vouchers->user->desgnation->department->name ?? 'none'}}</td> --}}
-                <td colspan="2">NETwork</td>
+                <td colspan="2">{{ $user->desgnation->department->name ?? 'none'}}</td>
                 <th>Employee ID :</th>
-                {{-- <td colspan="2">{{ $vouchers->user->identity }}</td> --}}
-                <td colspan="2">212-212</td>
+                <td colspan="2">{{ $user->identity }}</td>
             </tr>
 
             <tr>
@@ -116,19 +102,18 @@
                 
             <tr class="total-row">
                 <th colspan="4" class="total">Total Tk.</th>
-                {{-- <td colspan="2">{{ $total_amount }}</td> --}}
-                <td colspan="2">0909</td>
+                <td colspan="2">{{ $totalAmount }}</td>
             </tr>
             <tr>
                 <th>Prepared By:</th>
-                {{-- <td colspan="2">{{ $vouchers->user->name }}</td> --}}
-                <td colspan="2">samir</td>
+                <td colspan="2">{{ $user->name }}</td>
                 <th>Approved By:</th>
-                <td colspan="2">admin</td>
+                <td colspan="2"></td>
             </tr>
 
             </table>
         </div>
+
     </div>
 </body>
 </html>

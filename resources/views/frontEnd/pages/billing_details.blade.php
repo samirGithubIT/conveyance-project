@@ -52,6 +52,7 @@
                                     <th>From</th>
                                     <th>To</th>
                                     <th>Mode of Conveyance</th>
+                                    <th>People with you</th>
                                     <th>Payment Status</th>
                                     <th>Amount TK. </th>
                                     <th>Remarks</th>
@@ -65,6 +66,7 @@
                                     <td>{{ $voucher->from_location }}</td>
                                     <td>{{ $voucher->to_location }}</td>
                                     <td>{{ $voucher->conveyance->name }}</td>
+                                    <td>{{ $voucher->companions_count }}</td>
                                     <td>{!! paymentStatus($voucher->status) !!}</td>
                                     <td>{{ $voucher->amount }}</td>
                                     <td>{{ $voucher->remarks }}</td>
@@ -73,15 +75,15 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="7">Total Amount</th>
+                                    <th colspan="7" style="text-align: right"><strong>Total Amount</strong> :</th>
 
-                                    <td>{{ $conveyance->sum('remarks') + $conveyance->sum('amount') }}</td> 
+                                    <td colspan="2" class="bg-light-subtle">{{ $conveyance->sum('amount') }}</td> 
                                 </tr>
                             </tfoot>
                         </table>
                         <div class="button d-flex">
                             <a href="{{ url('/') }}" class="btn btn-outline-success px-3"> Go To Back </a>
-                            <a href="{{ route('voucher.pdf') }}" class="btn btn-outline-warning px-4 ms-4"> Print </a>
+                            <a href="{{ route('voucher.pdf', $voucher->user_id ) }}" class="btn btn-outline-warning px-4 ms-4"> Print </a>
                         </div>
                     </div>
                  </div>
