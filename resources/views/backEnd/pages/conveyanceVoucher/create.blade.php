@@ -103,7 +103,7 @@
                                 <textarea name="remarks" id="" cols="90" class="form-control"></textarea>
                             </div>
     
-                            <button type="submit" class="btn btn-primary p-3 px-4">Add</button>
+                            <button type="submit" class="btn btn-primary px-3 ">Add</button>
             
                         </form>
                     </div>

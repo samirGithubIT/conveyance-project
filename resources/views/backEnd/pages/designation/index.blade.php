@@ -5,8 +5,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
+       <div class="col-7 m-auto">
+        <div class="card shadow-lg">
+            <div class="card-header d-flex justify-content-between bg-light-subtle">
               
                     <h3>List of Designation</h3>
                     <a href="{{ route('admin.designation.create') }}" class="btn btn-outline-primary">Add a new Designation</a>
@@ -55,6 +56,7 @@
                 {!! $designations->links() !!}
             </div>
         </div>
+       </div>
     </div>
 </div>
 

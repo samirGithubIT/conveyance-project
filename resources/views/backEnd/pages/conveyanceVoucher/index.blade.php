@@ -5,6 +5,7 @@
 
 <div class="container">
     <div class="row">
+       <div class="col-10 m-auto">
         <div class="card">
             <div class="card-body">
 
@@ -62,8 +63,8 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
+        <div class="card shadow-lg">
+            <div class="card-header d-flex justify-content-between bg-light-subtle">
               
                     <h3>List of Reports</h3>
                     <a href="{{ route('admin.conveyance-voucher.create') }}" class="btn btn-outline-primary">Add a new Voucher Data</a>
@@ -74,7 +75,7 @@
                 <table class="table table-stripped table-hover">
                     <thead>
                         <tr>
-                            <th>Check</th>
+                            <th><input type="checkbox" id="select-all">All</th>
                             <th>SL.</th>
                             <th>Date</th>
                             <th>Name</th>
@@ -86,7 +87,7 @@
                     <tbody>
                         @foreach ( $conveyance_vouchers as $conveyance_voucher )
                               <tr>
-                                    <td><input type="checkbox" name="" id="" value="{{ $conveyance_voucher->id }}"></td>
+                                <td><input type="checkbox" name="voucher_ids[]" value="{{ $conveyance_voucher->id }}"></td>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $conveyance_voucher->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $conveyance_voucher->user->name }}</td>
@@ -126,6 +127,7 @@
                 {{-- {!! $conveyance_reports->links() !!} --}}
             </div>
         </div>
+       </div>
     </div>
 </div>
 
