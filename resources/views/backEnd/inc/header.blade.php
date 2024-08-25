@@ -3,14 +3,14 @@
       <div class="d-flex">
           <!-- LOGO -->
           <div class="navbar-brand-box">
-              <a href="" class="logo logo-dark">
+              <div href="" class="logo logo-dark">
                   <span class="logo-sm">
                       <img src="{{ asset('assets/images/Rajit-logo.jpg') }}" alt="" height="24">
                   </span>
                   <span class="logo-lg">
                       <img src="{{ asset('assets/images/Rajit.png') }}" alt="" height="24"> <span class="logo-txt"></span>
                   </span>
-              </a>
+              </div>
           </div>
 
           <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">

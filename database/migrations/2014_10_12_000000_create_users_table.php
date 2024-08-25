@@ -17,10 +17,14 @@ return new class extends Migration
             $table->foreignId('designation_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('identity');
+            $table->string('number');
+            $table->string('gender');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->text('address')->nullable();
+            $table->string('image')->nullable();
             $table->enum('user_type', ['admin', 'employee'])->default('employee');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

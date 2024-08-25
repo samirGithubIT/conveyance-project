@@ -118,14 +118,14 @@ class ConveyanceVoucherController extends Controller
     {
         ConveyanceVoucher::find($id)->delete();
 
-        return redirect()->to('/admin/conveyance-voucher')->with('warning', 'A new Voucher deleted successfully');
+        return redirect()->back()->with('warning', 'A  Voucher deleted successfully');
     }
 
 
 
 
     // for payment status
-    public function AcceptVoucher(Request $request){
+    public function StatusVoucher(Request $request){
 
         $conveyanceVoucher_id = $request->conveyanceVoucher_id; // see in show.blade.php
         $status = $request->status;
@@ -135,6 +135,18 @@ class ConveyanceVoucherController extends Controller
         $conveyance_voucher->save(); 
 
         return redirect()->to('admin/conveyance-voucher')->with('success','payment ' .$status. 'successfully');
+    }
+
+    public function ApproveVoucher(Request $request){
+
+        $conveyanceVoucher_id = $request->conveyanceVoucher_id; // see in show.blade.php
+        $approval = $request->approval;
+
+        $conveyance_voucher = ConveyanceVoucher::find($conveyanceVoucher_id); // conveyance voucher table er id 
+        $conveyance_voucher->approval = $approval; 
+        $conveyance_voucher->save(); 
+
+        return redirect()->to('admin/conveyance-voucher')->with('success',$approval. 'successfully');
     }
 
     // for filtering

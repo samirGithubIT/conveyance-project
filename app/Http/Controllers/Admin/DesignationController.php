@@ -15,7 +15,8 @@ class DesignationController extends Controller
     public function index()
     {
         $designations = Designation::paginate(5);
-        return view ('backEnd.pages.designation.index', compact('designations'));
+        $department_list = Department::departmentLists();  // for relation
+        return view ('backEnd.pages.designation.index', compact('designations','department_list'));
     }
 
     /**

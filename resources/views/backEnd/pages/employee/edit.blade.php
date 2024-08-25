@@ -26,8 +26,7 @@
                                 <option value="{{ $department_id }}"
         
                                     @if ($employee->department_id == $department_id) 
-                                    selected 
-                                    @endif >{{ $name }}</option>
+                                    selected  @endif > {{ $name }} </option>
                                     
                                 @endforeach
                             </select>

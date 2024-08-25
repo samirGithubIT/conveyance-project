@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-7 m-auto">
+        <div class="col-12 m-auto">
             <div class="card shadow-lg">
                 <div class="card-header d-flex justify-content-between bg-light-subtle">
                   
@@ -19,21 +19,29 @@
                         <thead>
                             <tr>
                                 <th>SL.</th>
+                                <th>Image</th>
                                 <th>Name</th>
+                                <th>Age</th>
                                 <th>Employee ID</th>
+                                <th>Contact No.</th>
                                 <th>Designation</th>
                                 <th>Department</th>
+                                <th>Address</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ( $employees as $employee )
                                   <tr>
-                                        <td>{{ $employee->id }}</td>     
+                                        <td>{{ $loop->index + 1 }}</td>     
+                                        <td>{{ $employee->image }}</td>     
                                         <td>{{ $employee->name }}</td>     
+                                        <td>{{ $employee->gender }}</td>     
                                         <td>{{ $employee->identity }}</td>     
+                                        <td>{{ $employee->number }}</td>     
                                         <td>{{ $employee->designation->name ?? 'null'}}</td>    
-                                        <td>{{ $employee->designation->department->name ?? 'null'}}</td>     
+                                        <td>{{ $employee->designation->department->name ?? 'null'}}</td>
+                                        <td>{{ $employee->address ?? 'null' }}</td>       
                                         <td>
                                             <div class="actions">
                                                 
@@ -43,7 +51,21 @@
                                                 <a href="" class="btn btn-outline-danger"
                                                     onclick="
                                                         event.preventDefault();
-                                                        document.getElementById('deleteEmployee-{{ $employee->id }}').submit()
+                                                        Swal.fire({
+                                                         title: '{{ session()->get('warning') }}',
+                                                         text: 'You won\'t be able to revert this!',
+                                                         icon: 'warning',
+                                                         showCancelButton: true,
+                                                         confirmButtonColor: '#3085d6',
+                                                         cancelButtonColor: '#d33',
+                                                         confirmButtonText: 'Yes, delete it!'
+                                                           }).then((result) => {
+                                                             if (result.isConfirmed) {
+                                                                
+                                                                document.getElementById('deleteEmployee-{{ $employee->id }}').submit();
+                                                               
+                                                                }
+                                                            }); 
                                                     "
                                                 >Delete</a>
                                                 

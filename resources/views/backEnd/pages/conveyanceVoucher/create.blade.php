@@ -31,7 +31,7 @@
                                     <option value="">-- SELECT --</option>
     
                                     @foreach ( $employee_list as $employee)
-                                    <option value="{{ $employee->id }}">{{ $employee->name}} - {{ $employee->designation->name ?? '' }}({{ $employee->designation->department->name ?? '' }})</option>
+                                    <option value="{{ $employee->id }}">{{ $employee->name}} - {{ $employee->designation->name ?? 'null' }}({{ $employee->designation->department->name ?? 'null' }})</option>
                                     @endforeach
     
                                 </select>

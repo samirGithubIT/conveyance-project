@@ -5,14 +5,13 @@
 
 <div class="container">
     <div class="row">
-       <div class="col-10 m-auto">
+        <div class="m-auto">
+           {{-- filtering --}}
         <div class="card">
             <div class="card-body">
-
                 <form action="{{ route('admin.voucher.search') }}" method="get">
                     <div class="row d-flex">
                         <div class="col-auto">
-                                {{-- filtering --}}
                                 <label for="" class="form-label">Select PaymentStatus</label>
             
                                 <select name="status" id="#" class="form-select">
@@ -33,6 +32,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                         </div>
+
                         <div class="col-auto">
                             <label for="" class="form-label">Select Name</label>
             
@@ -54,14 +54,15 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                         </div>
+
                         <div class="col-auto">
                             <button class="btn btn-outline-info mt-4" type="submit">Search</button>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
+            {{-- filtering  end--}}
 
         <div class="card shadow-lg">
             <div class="card-header d-flex justify-content-between bg-light-subtle">
@@ -75,10 +76,10 @@
                 <table class="table table-stripped table-hover">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="select-all">All</th>
                             <th>SL.</th>
                             <th>Date</th>
                             <th>Name</th>
+                            <th>Approval Status</th>  
                             <th>Payment Status</th>  
                             <th> paid At </th>  
                             <th>Actions</th>
@@ -87,28 +88,57 @@
                     <tbody>
                         @foreach ( $conveyance_vouchers as $conveyance_voucher )
                               <tr>
-                                <td><input type="checkbox" name="voucher_ids[]" value="{{ $conveyance_voucher->id }}"></td>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $conveyance_voucher->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $conveyance_voucher->user->name }}</td>
-                                    <td>{!! paymentStatus($conveyance_voucher->status) !!}</td>
-                                    <td> 
-                                        @if ($conveyance_voucher->status == 'paid')
-                                            {{ $conveyance_voucher->updated_at->format('d M Y, h:i A') }}
+                                    <td>{!! approvalStatus($conveyance_voucher->approval) !!}</td>
+                                     {{-- approval cancel hole status --}}
+                                    <td>
+                                        @if ($conveyance_voucher->approval == 'cancelled')
+
+                                        <h5 class="text-danger bg-dark badge">Your invoice has cancelled</h5>  
                                         @else
-                                            <h5 class="text-warning bg-dark badge">Not Paid Yet</h5>    
+                                        
+                                        {!! paymentStatus($conveyance_voucher->status) !!}
+                                        @endif
+                                    </td>
+                                    {{-- update time of Paid  --}}
+                                    <td> 
+                                        @if ($conveyance_voucher->approval == 'cancelled') 
+                                          
+                                           <h5 class="text-danger bg-dark badge">Your invoice has cancelled</h5>  
+
+                                        @elseif ($conveyance_voucher->approval == 'approved' && $conveyance_voucher->status == 'paid')
+                                             {{ $conveyance_voucher->updated_at->format('d M Y, h:i A') }}
+
+                                        @else
+                                             <h5 class="text-warning bg-dark badge">Not Paid Yet</h5>  
                                         @endif    
                                     </td>
                                     
                                     <td>
                                         <div class="actions">
-                                            <a href="{{ route('admin.conveyance-voucher.show', $conveyance_voucher->id) }}" class="btn btn-outline-warning">Show</a>
-                                            <a href="{{ route('admin.conveyance-voucher.edit', $conveyance_voucher->id) }}" class="btn btn-outline-info">Edit</a>
+                                            <a href="{{ route('admin.conveyance-voucher.show', $conveyance_voucher->id) }}" class="btn btn-outline-warning btn-sm">Show</a>
+                                            
                                             {{-- delete method --}}
-                                            <a href="" class="btn btn-outline-danger"
+                                            <a href="" class="btn btn-outline-danger btn-sm"
                                                 onclick="
                                                     event.preventDefault();
-                                                    document.getElementById('deleteVoucher-{{ $conveyance_voucher->id }}').submit()
+                                                    Swal.fire({
+                                                      title: '{{ session()->get('warning') }}',
+                                                         text: 'You won\'t be able to revert this!',
+                                                         icon: 'warning',
+                                                         showCancelButton: true,
+                                                         confirmButtonColor: '#3085d6',
+                                                         cancelButtonColor: '#d33',
+                                                         confirmButtonText: 'delete it!'
+                                                           }).then((result) => {
+                                                             if (result.isConfirmed) {
+                                                                
+                                                                document.getElementById('deleteVoucher-{{ $conveyance_voucher->id }}').submit();
+                                                               
+                                                                }
+                                                            }); 
                                                 "
                                             >Delete</a> 
                                             

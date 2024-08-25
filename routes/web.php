@@ -67,7 +67,8 @@ Route::middleware(['auth','admin_section'])->prefix('admin')->name('admin.')->gr
     Route::resource('employee',EmployeeController::class);
     Route::resource('conveyance',ConveyanceController::class);
     Route::resource('conveyance-voucher',ConveyanceVoucherController::class);
-    Route::post('voucher-accept',[ConveyanceVoucherController::class, 'AcceptVoucher'])->name('voucher.accept');
+    Route::post('voucher-accept',[ConveyanceVoucherController::class, 'StatusVoucher'])->name('voucher.status');
+    Route::post('voucher-approve',[ConveyanceVoucherController::class, 'ApproveVoucher'])->name('voucher.approve');
     Route::get('voucher-search',[ConveyanceVoucherController::class, 'SearchVoucher'])->name('voucher.search');
 
 });

@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('companions_count');
             $table->decimal('amount', 6, 2);
             $table->text('remarks')->nullable();
-            $table->enum('status' , ['pending', 'paid']);
+            $table->enum('status' , ['pending', 'paid'])->default('pending');
+            $table->enum('approval' , ['pending', 'cancelled', 'approved'])->default('pending');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

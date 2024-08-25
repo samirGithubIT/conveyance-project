@@ -44,15 +44,22 @@ class EmployeeController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'identity' => 'required',
+            'number' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
         ]);
 
         $employee = new User();
         $employee->name = $request->name;
+        $employee->image = $request->image;
         $employee->identity = $request->identity;
+        $employee->number = $request->number;
+        $employee->gender = $request->gender;
+        $employee->address = $request->address;
         $employee->designation_id = $request->designation_id;
-        $employee->department_id = $request->department_id;
+        $employee->department_id = $request->department_id; 
         $employee->save();
 
         return redirect()->to('/admin/employee')->with('success', 'A new employee created successfully');

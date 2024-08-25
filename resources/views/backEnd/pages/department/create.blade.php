@@ -1,35 +1,27 @@
-@extends('backEnd.layouts.masters')
-@section('page-title', 'Add Departments')
 
-@section('content')
-
-<div class="row">
-  <div class="col-6 m-auto">
-    <div class="card shadow-lg">
-        <div class="card-header d-flex justify-content-between bg-success-subtle">
-          
-                <h3>Add a new Department</h3>
-            
-        </div>
-        <div class="card-body">
-            <form action="{{ route('admin.department.store') }}" method="POST">
+<!-- Add Department Modal -->
+<div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('admin.department.store') }}">
                 @csrf
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
-                    <input type="text" name="name" id="" class="form-control">
-
-                    @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDepartmentModalLabel"><i class="fas fa-user-plus"></i> Add Department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Add</button>
-
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name"><i class=" bx bx-building-house"></i> Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-save"></i> Add </button>
+                </div>
             </form>
         </div>
     </div>
-  </div>
 </div>
-
-@endsection

@@ -20,6 +20,12 @@
 
         <script src="{{ asset('assets/js/app.js') }}"></script>
 
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- Include Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
         {{-- sweetalert --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
